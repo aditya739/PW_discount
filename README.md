@@ -98,17 +98,17 @@ A dynamic and responsive web application for managing and displaying Physics Wal
 
 ### Production
 - **Live Site**: [https://pw-discount.vercel.app/](https://pw-discount.vercel.app/)
-- **Admin Panel**: [https://pw-discount.vercel.app/admin/login](https://pw-discount.vercel.app/admin/login)
+
 
 ## Deployment
 
 ### Frontend (Vercel)
-- Deployed at: [https://pw-discount.vercel.app/](https://pw-discount.vercel.app/)
+
 - Auto-deploys on push to `main` branch
-- Environment variable required: `VITE_API_URL=https://pw-discount.onrender.com/api`
+- Environment variable required: 
 
 ### Backend (Render)
-- Deployed at: [https://pw-discount.onrender.com](https://pw-discount.onrender.com)
+
 - Auto-deploys on push to `main` branch
 - Environment variables required:
   - `PORT=5000`
