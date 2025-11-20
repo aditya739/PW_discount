@@ -1,6 +1,14 @@
-# Physics Wallah Coupon Website
+# Physics Wallah Vouchers
 
 A dynamic and responsive web application for managing and displaying Physics Wallah course offers, coupons, and notices. This project features a modern frontend with a robust backend for content management.
+
+## 🌐 Live Demo
+
+**Website**: [https://pw-discount.vercel.app/](https://pw-discount.vercel.app/)
+
+**Backend API**: [https://pw-discount.onrender.com](https://pw-discount.onrender.com)
+
+> **Note**: The backend (hosted on Render free tier) may take ~30 seconds to wake up on the first request after inactivity.
 
 ## Features
 
@@ -84,9 +92,29 @@ A dynamic and responsive web application for managing and displaying Physics Wal
 
 ## Usage
 
+### Local Development
 1. **Home Page**: Visit `http://localhost:5173` (or your configured port) to view the website.
 2. **Admin Panel**: Navigate to `/admin/login` to access the dashboard.
-   - Default credentials should be set up in your backend auth logic or database.
+
+### Production
+- **Live Site**: [https://pw-discount.vercel.app/](https://pw-discount.vercel.app/)
+- **Admin Panel**: [https://pw-discount.vercel.app/admin/login](https://pw-discount.vercel.app/admin/login)
+
+## Deployment
+
+### Frontend (Vercel)
+- Deployed at: [https://pw-discount.vercel.app/](https://pw-discount.vercel.app/)
+- Auto-deploys on push to `main` branch
+- Environment variable required: `VITE_API_URL=https://pw-discount.onrender.com/api`
+
+### Backend (Render)
+- Deployed at: [https://pw-discount.onrender.com](https://pw-discount.onrender.com)
+- Auto-deploys on push to `main` branch
+- Environment variables required:
+  - `PORT=5000`
+  - `MONGODB_URI=<your_mongodb_atlas_uri>`
+  - `JWT_SECRET=<your_secret_key>`
+  - `FRONTEND_URL=https://pw-discount.vercel.app`
 
 ## Project Structure
 
