@@ -1,0 +1,14 @@
+{
+  "name": "pw-vouchers",
+  "version": "1.0.0",
+  "description": "Physics Wallah Vouchers Website",
+  "scripts": {
+    "dev": "concurrently \"npm run dev:frontend\" \"npm run dev:backend\"",
+    "dev:frontend": "cd frontend && npm run dev",
+    "dev:backend": "cd Backend && npm run dev",
+    "install:all": "npm install && cd frontend && npm install && cd ../Backend && npm install"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}
