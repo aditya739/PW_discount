@@ -1,6 +1,5 @@
 import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
-import '../styles/HeroSection.css'
 
 const HeroSection = ({ heroData }) => {
   const [copied, setCopied] = useState(false)
@@ -190,9 +189,28 @@ const HeroSection = ({ heroData }) => {
             </h1>
 
             {offerCode && (
-              <div className="hero-offer-code-container">
-                <div className="hero-offer-code-box">
-                  <div className="hero-offer-code-text">
+              <div style={{
+                display: 'flex',
+                justifyContent: 'center',
+                alignItems: 'center',
+                gap: 'var(--spacing-lg)',
+                marginBottom: 'var(--spacing-xl)',
+                flexWrap: 'wrap'
+              }}>
+                <div style={{
+                  border: '2px dashed var(--color-accent)',
+                  borderRadius: 'var(--radius-md)',
+                  padding: 'var(--spacing-lg) var(--spacing-xl)',
+                  background: '#ffffff',
+                  boxShadow: 'var(--shadow-md)'
+                }}>
+                  <div style={{
+                    fontSize: 'var(--font-size-xxl)',
+                    fontWeight: 'var(--font-weight-bold)',
+                    color: 'var(--color-accent)',
+                    fontFamily: 'monospace',
+                    letterSpacing: '2px'
+                  }}>
                     {offerCode}
                   </div>
                   <p style={{ fontSize: 'var(--font-size-sm)', color: 'var(--color-text-secondary)', marginTop: 'var(--spacing-xs)', margin: 0 }}>
@@ -202,7 +220,13 @@ const HeroSection = ({ heroData }) => {
 
                 <button
                   onClick={handleCopy}
-                  className="btn btn-primary hero-copy-button"
+                  className="btn btn-primary"
+                  style={{
+                    padding: '16px 32px',
+                    fontSize: 'var(--font-size-md)',
+                    minWidth: '160px',
+                    height: 'fit-content'
+                  }}
                 >
                   {copied ? '✓ Copied!' : '📋 Copy Code'}
                 </button>

@@ -113,14 +113,7 @@ const Home = () => {
     }
 
     return (
-      <div className="card image-card" style={{ 
-        padding: 0, 
-        overflow: 'hidden', 
-        display: 'flex', 
-        alignItems: 'center', 
-        justifyContent: 'center', 
-        marginBottom: 'var(--spacing-lg)' 
-      }}>
+      <div className="card" style={{ padding: 0, overflow: 'hidden', height: '500px', display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: 'var(--spacing-lg)' }}>
         {renderContent()}
       </div>
     )
