@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { courseCategoryAPI } from '../services/api'
+import '../styles/OffersTable.css'
 
 const OffersTable = () => {
   const [categories, setCategories] = useState([])
@@ -36,13 +37,8 @@ const OffersTable = () => {
 
   return (
     <div className="container">
-      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 'var(--spacing-lg)', flexWrap: 'wrap', gap: '15px' }}>
-        <h2 style={{ 
-          fontSize: 'var(--font-size-xl)', 
-          fontWeight: 'var(--font-weight-bold)',
-          color: 'var(--color-text-primary)',
-          margin: 0
-        }}>
+      <div className="offers-header">
+        <h2 className="offers-title">
           Available Course Offers
         </h2>
         <input 
@@ -50,21 +46,13 @@ const OffersTable = () => {
           placeholder="Search courses..." 
           value={searchTerm}
           onChange={(e) => setSearchTerm(e.target.value)}
-          style={{
-            padding: '10px 15px',
-            borderRadius: 'var(--radius-full)',
-            border: '1px solid var(--color-border)',
-            width: '100%',
-            maxWidth: '300px',
-            fontSize: 'var(--font-size-sm)',
-            outline: 'none',
-            boxShadow: 'var(--shadow-sm)'
-          }}
+          className="offers-search"
         />
       </div>
 
-      <div className="card" style={{ overflowX: 'auto', padding: 0 }}>
-        <table style={{ width: '100%', borderCollapse: 'collapse', minWidth: '600px' }}>
+      {/* Desktop Table View */}
+      <div className="card offers-table-container">
+        <table className="offers-table">
           <thead>
             <tr style={{ background: 'var(--color-bg-secondary)', borderBottom: '1px solid var(--color-border)' }}>
               <th style={{ padding: 'var(--spacing-md)', textAlign: 'left', color: 'var(--color-text-secondary)', fontSize: 'var(--font-size-sm)', fontWeight: 'var(--font-weight-semibold)' }}>Category</th>
@@ -114,19 +102,54 @@ const OffersTable = () => {
             )}
           </tbody>
         </table>
-        
-        {filteredCategories.length > INITIAL_DISPLAY_COUNT && (
-          <div style={{ padding: 'var(--spacing-md)', textAlign: 'center', borderTop: '1px solid var(--color-border)' }}>
-            <button 
-              onClick={() => setShowAll(!showAll)}
-              className="btn btn-secondary"
-              style={{ width: '100%' }}
-            >
-              {showAll ? 'Show Less' : `Show All (${filteredCategories.length} Offers)`}
-            </button>
+      </div>
+
+      {/* Mobile Card View */}
+      <div className="offers-card-view">
+        {displayedCategories.length > 0 ? (
+          displayedCategories.map((cat, idx) => (
+            <div key={cat._id || idx} className="offer-card">
+              <div className="offer-card-header">
+                {cat.iconUrl && <img src={cat.iconUrl} alt="" className="offer-card-icon" />}
+                <span className="offer-card-name">{cat.name}</span>
+              </div>
+              <div className="offer-card-body">
+                <div className="offer-card-row">
+                  <span className="offer-card-label">Discount</span>
+                  <span className="offer-card-value">{cat.discountText}</span>
+                </div>
+                <div className="offer-card-row">
+                  <span className="offer-card-label">Code</span>
+                  <span className="offer-card-code">{cat.applicableCode}</span>
+                </div>
+                <button 
+                  className="btn btn-primary offer-card-button"
+                  onClick={() => handleCopy(cat.applicableCode)}
+                >
+                  {copiedCode === cat.applicableCode ? '✓ Copied' : 'Copy Code'}
+                </button>
+              </div>
+            </div>
+          ))
+        ) : (
+          <div style={{ padding: 'var(--spacing-xl)', textAlign: 'center', color: 'var(--color-text-secondary)' }}>
+            No courses found matching "{searchTerm}"
           </div>
         )}
       </div>
+
+      {/* Show More/Less Button */}
+      {filteredCategories.length > INITIAL_DISPLAY_COUNT && (
+        <div style={{ padding: 'var(--spacing-md) 0', textAlign: 'center' }}>
+          <button 
+            onClick={() => setShowAll(!showAll)}
+            className="btn btn-secondary"
+            style={{ width: '100%', maxWidth: '400px', minHeight: '44px' }}
+          >
+            {showAll ? 'Show Less' : `Show All (${filteredCategories.length} Offers)`}
+          </button>
+        </div>
+      )}
     </div>
   )
 }

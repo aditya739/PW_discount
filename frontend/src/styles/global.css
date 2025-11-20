@@ -8,7 +8,7 @@
   --color-accent-hover: #004499;
   --color-border: #d2d2d7;
   
-  /* Spacing */
+  /* Spacing - Desktop */
   --spacing-xs: 4px;
   --spacing-sm: 8px;
   --spacing-md: 16px;
@@ -16,7 +16,7 @@
   --spacing-xl: 40px;
   --spacing-xxl: 80px;
   
-  /* Typography */
+  /* Typography - Desktop */
   --font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
   --font-size-xs: 12px;
   --font-size-sm: 14px;
@@ -41,7 +41,12 @@
   /* Transitions */
   --transition-fast: 0.2s ease;
   --transition-normal: 0.3s cubic-bezier(0.25, 0.1, 0.25, 1);
+  
+  /* Container */
+  --container-max-width: 1024px;
+  --container-padding: 24px;
 }
+
 
 * {
   margin: 0;
@@ -71,14 +76,16 @@ button {
 
 /* Layout Utilities */
 .container {
-  max-width: 1024px; /* Apple uses narrower containers for readability */
+  max-width: var(--container-max-width);
   margin: 0 auto;
-  padding: 0 var(--spacing-lg);
+  padding: 0 var(--container-padding);
+  width: 100%;
 }
 
 .section {
   padding: var(--spacing-xxl) 0;
 }
+
 
 /* Typography Utilities */
 h1, h2, h3, h4, h5, h6 {
@@ -164,27 +171,88 @@ p {
   animation: fadeIn 0.6s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
 }
 
-/* Responsive */
-/* Responsive Layouts */
-.home-layout {
-  display: grid;
-  grid-template-columns: 300px 1fr;
-  gap: var(--spacing-xl);
-  align-items: start;
+/* ===================================
+   RESPONSIVE - MOBILE FIRST
+   =================================== */
+
+/* Extra Small Mobile (320px - 374px) */
+@media (max-width: 374px) {
+  :root {
+    --font-size-xs: 10px;
+    --font-size-sm: 12px;
+    --font-size-md: 14px;
+    --font-size-lg: 16px;
+    --font-size-xl: 20px;
+    --font-size-xxl: 24px;
+    --spacing-xs: 3px;
+    --spacing-sm: 6px;
+    --spacing-md: 12px;
+    --spacing-lg: 16px;
+    --spacing-xl: 20px;
+    --spacing-xxl: 32px;
+    --container-padding: 12px;
+  }
+  
+  .section {
+    padding: var(--spacing-xl) 0;
+  }
+  
+  .hero-container {
+    min-height: 300px !important;
+    padding: var(--spacing-lg) var(--spacing-sm) !important;
+  }
 }
 
-.home-layout.right {
-  grid-template-columns: 1fr 300px;
+/* Small Mobile (375px - 479px) */
+@media (min-width: 375px) and (max-width: 479px) {
+  :root {
+    --font-size-xs: 11px;
+    --font-size-sm: 13px;
+    --font-size-md: 15px;
+    --font-size-lg: 18px;
+    --font-size-xl: 22px;
+    --font-size-xxl: 26px;
+    --spacing-xxl: 40px;
+    --container-padding: 16px;
+  }
+  
+  .hero-container {
+    min-height: 320px !important;
+    padding: var(--spacing-lg) var(--spacing-md) !important;
+  }
 }
 
-.hero-container {
-  padding: var(--spacing-xxl) var(--spacing-lg);
-  min-height: 500px;
+/* Mobile (480px - 767px) */
+@media (min-width: 480px) and (max-width: 767px) {
+  :root {
+    --font-size-xxl: 28px;
+    --font-size-xl: 24px;
+    --font-size-lg: 20px;
+    --spacing-xxl: 48px;
+    --container-padding: 20px;
+  }
+  
+  .hero-container {
+    min-height: 350px !important;
+  }
 }
 
-@media (max-width: 900px) {
-  .home-layout, .home-layout.right {
-    grid-template-columns: 1fr;
+/* Tablet (768px - 899px) */
+@media (min-width: 768px) and (max-width: 899px) {
+  :root {
+    --font-size-xxl: 36px;
+    --font-size-xl: 26px;
+    --spacing-xxl: 60px;
+    --container-padding: 24px;
+  }
+  
+  .container {
+    padding: 0 var(--spacing-lg);
+  }
+
+  .btn {
+    padding: 10px 20px;
+    font-size: var(--font-size-sm);
   }
   
   .hero-container {
@@ -193,34 +261,37 @@ p {
   }
 }
 
-@media (max-width: 768px) {
-  :root {
-    --font-size-xxl: 32px;
-    --font-size-xl: 24px;
-    --spacing-xxl: 40px;
-    --spacing-xl: 24px;
-  }
-  
-  .container {
-    padding: 0 var(--spacing-md);
-  }
-
-  .btn {
-    padding: 10px 20px;
-    font-size: var(--font-size-xs);
-  }
-}
-
-@media (max-width: 480px) {
-  :root {
-    --font-size-xxl: 28px;
-    --font-size-lg: 18px;
-  }
-  
+/* Desktop and above (900px+) - Default values from :root */
+@media (min-width: 900px) {
   .hero-container {
-    min-height: 350px;
+    padding: var(--spacing-xxl) var(--spacing-lg);
+    min-height: 500px;
   }
 }
+
+/* Responsive Layouts */
+.home-layout {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--spacing-lg);
+  align-items: start;
+}
+
+.home-layout.right {
+  grid-template-columns: 1fr;
+}
+
+@media (min-width: 900px) {
+  .home-layout {
+    grid-template-columns: 300px 1fr;
+    gap: var(--spacing-xl);
+  }
+  
+  .home-layout.right {
+    grid-template-columns: 1fr 300px;
+  }
+}
+
 
 /* ===================================
    NAVBAR STYLES - RESPONSIVE
