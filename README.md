@@ -27,6 +27,10 @@ A dynamic and responsive web application for managing and displaying Physics Wal
 - **Mobile-First**: Fully responsive layout that adapts to Mobile, Tablet, and Desktop screens.
 - **Modern UI**: Glassmorphism effects, smooth transitions, and a clean, minimalist aesthetic.
 
+### 5. Community Integration
+- **Social Links**: Direct links to official Physics Wallah social media channels (Instagram, WhatsApp, Telegram, Reddit).
+- **Website Link**: Quick access to the official website.
+
 ## Tech Stack
 
 - **Frontend**: React, Vite, React Router, React Icons
