@@ -9,15 +9,31 @@ dotenv.config();
 const app = express();
 
 // Middleware
-app.use(cors({ origin: process.env.FRONTEND_URL || ['http://localhost:3000', 'http://localhost:3001'] }));
+const allowedOrigins = [
+  'http://localhost:3000', 
+  'http://localhost:3001',
+  ...(process.env.FRONTEND_URL ? process.env.FRONTEND_URL.split(',') : [])
+];
+
+app.use(cors({ 
+  origin: (origin, callback) => {
+    if (!origin || allowedOrigins.includes(origin)) {
+      callback(null, true);
+    } else {
+      callback(new Error('Not allowed by CORS'));
+    }
+  },
+  credentials: true
+}));
 app.use(express.json({ limit: '10mb' }));
 app.use(express.urlencoded({ limit: '10mb', extended: true }));
 
-// Rate limiting
+// Rate limiting - More lenient for development
 const limiter = rateLimit({
-  windowMs: 15 * 60 * 1000,
-  max: 100,
-  message: 'Too many requests, please try again later'
+  windowMs: 15 * 60 * 1000, // 15 minutes
+  max: 1000, // 1000 requests per window
+  message: 'Too many requests, please try again later',
+  skip: (req) => req.method === 'GET' // Don't rate limit GET requests
 });
 app.use('/api/', limiter);
 
@@ -31,6 +47,10 @@ app.use('/api/auth', require('./routes/auth'));
 app.use('/api/coupons', require('./routes/coupons'));
 app.use('/api/banners', require('./routes/banners'));
 app.use('/api/analytics', require('./routes/analytics'));
+app.use('/api/hero-images', require('./routes/heroImages'));
+app.use('/api/notices', require('./routes/notices'));
+app.use('/api/main-divs', require('./routes/mainDivs'));
+app.use('/api/course-categories', require('./routes/courseCategories'));
 
 // Error handling middleware
 app.use((err, req, res, next) => {

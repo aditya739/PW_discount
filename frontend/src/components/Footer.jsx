@@ -3,16 +3,16 @@ import React from 'react'
 const Footer = () => {
   return (
     <footer style={{
-      background: '#ffffff',
-      borderTop: '1px solid #e5e5e5',
-      padding: '40px 20px'
+      background: 'var(--color-bg)',
+      borderTop: '1px solid var(--color-border)',
+      padding: 'var(--spacing-xxl) var(--spacing-lg)'
     }}>
       <div className="container" style={{ textAlign: 'center' }}>
-        <div style={{ marginBottom: '20px', fontSize: '14px', color: '#666' }}>
-          <a href="#" style={{ color: '#666', textDecoration: 'none', marginRight: '20px' }}>Privacy Policy</a>
-          <a href="#" style={{ color: '#666', textDecoration: 'none' }}>Terms & Conditions</a>
+        <div style={{ marginBottom: 'var(--spacing-lg)', fontSize: 'var(--font-size-sm)', color: 'var(--color-text-secondary)' }}>
+          <a href="#" style={{ color: 'var(--color-text-secondary)', textDecoration: 'none', marginRight: 'var(--spacing-lg)', transition: 'color 0.2s' }} onMouseOver={e => e.target.style.color = 'var(--color-text-primary)'} onMouseOut={e => e.target.style.color = 'var(--color-text-secondary)'}>Privacy Policy</a>
+          <a href="#" style={{ color: 'var(--color-text-secondary)', textDecoration: 'none', transition: 'color 0.2s' }} onMouseOver={e => e.target.style.color = 'var(--color-text-primary)'} onMouseOut={e => e.target.style.color = 'var(--color-text-secondary)'}>Terms & Conditions</a>
         </div>
-        <p style={{ fontSize: '13px', color: '#999' }}>
+        <p style={{ fontSize: 'var(--font-size-xs)', color: '#999' }}>
           &copy; 2024 PW Deals. All rights reserved.
         </p>
       </div>

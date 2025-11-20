@@ -59,6 +59,8 @@ router.get('/performance/:couponId', authMiddleware, async (req, res) => {
   }
 });
 
+
+
 // Admin: Get all analytics
 router.get('/', authMiddleware, async (req, res) => {
   try {

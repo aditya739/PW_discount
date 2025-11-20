@@ -5,35 +5,42 @@ const Header = () => {
   return (
     <>
       <nav style={{
-        background: '#ffffff',
-        borderBottom: '1px solid #e5e5e5',
-        padding: '16px 0'
+        background: 'rgba(255, 255, 255, 0.8)',
+        backdropFilter: 'blur(20px)',
+        WebkitBackdropFilter: 'blur(20px)',
+        borderBottom: '1px solid rgba(0,0,0,0.05)',
+        padding: 'var(--spacing-md) 0',
+        position: 'sticky',
+        top: 0,
+        zIndex: 1000,
+        transition: 'all 0.3s ease'
       }}>
         <div className="container" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
           <Link to="/" style={{
-            fontSize: '20px',
-            fontWeight: '700',
-            color: '#003d99',
+            display: 'flex',
+            alignItems: 'center',
             textDecoration: 'none'
           }}>
-            PW Deals
+            <img 
+              src="/logo.png" 
+              alt="PW Vouchers" 
+              style={{ 
+                height: '40px', 
+                objectFit: 'contain' 
+              }} 
+            />
           </Link>
 
-          <div style={{ display: 'flex', gap: '40px' }}>
-            <Link to="/" style={{ color: '#1a1a1a', textDecoration: 'none', fontSize: '15px', fontWeight: '500' }}>Home</Link>
-            <Link to="/offers" style={{ color: '#1a1a1a', textDecoration: 'none', fontSize: '15px', fontWeight: '500' }}>All Offers</Link>
-            <a href="#community" style={{ color: '#1a1a1a', textDecoration: 'none', fontSize: '15px', fontWeight: '500' }}>Community</a>
-            <a href="#help" style={{ color: '#1a1a1a', textDecoration: 'none', fontSize: '15px', fontWeight: '500' }}>Help</a>
+          <div style={{ display: 'flex', gap: 'var(--spacing-lg)' }}>
+            <Link to="/" style={{ color: 'var(--color-text-primary)', textDecoration: 'none', fontSize: 'var(--font-size-sm)', fontWeight: 'var(--font-weight-medium)' }}>Home</Link>
+            <Link to="/offers" style={{ color: 'var(--color-text-primary)', textDecoration: 'none', fontSize: 'var(--font-size-sm)', fontWeight: 'var(--font-weight-medium)' }}>All Offers</Link>
+            <a href="#community" style={{ color: 'var(--color-text-primary)', textDecoration: 'none', fontSize: 'var(--font-size-sm)', fontWeight: 'var(--font-weight-medium)' }}>Community</a>
+            <a href="#help" style={{ color: 'var(--color-text-primary)', textDecoration: 'none', fontSize: 'var(--font-size-sm)', fontWeight: 'var(--font-weight-medium)' }}>Help</a>
           </div>
 
-          <Link to="/admin/login" style={{
-            background: '#003d99',
-            color: 'white',
-            padding: '10px 20px',
-            borderRadius: '6px',
-            textDecoration: 'none',
-            fontSize: '15px',
-            fontWeight: '600'
+          <Link to="/admin/login" className="btn btn-primary" style={{
+            padding: '8px 20px',
+            fontSize: 'var(--font-size-sm)'
           }}>
             Sign In
           </Link>
@@ -41,12 +48,14 @@ const Header = () => {
       </nav>
 
       <div style={{
-        background: '#e3f2fd',
-        padding: '12px 0',
+        background: 'var(--color-bg-secondary)',
+        padding: 'var(--spacing-sm) 0',
         textAlign: 'center',
-        fontSize: '14px',
-        color: '#003d99',
-        fontWeight: '500'
+        fontSize: 'var(--font-size-xs)',
+        color: 'var(--color-accent)',
+        fontWeight: 'var(--font-weight-medium)',
+        letterSpacing: '0.5px',
+        textTransform: 'uppercase'
       }}>
         Daily Offers & Maximum Savings!
       </div>
