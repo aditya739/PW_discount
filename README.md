@@ -6,7 +6,7 @@ A dynamic and responsive web application for managing and displaying Physics Wal
 
 **Website**: [https://pw-discount.vercel.app/](https://pw-discount.vercel.app/)
 
-**Backend API**: [https://pw-discount.onrender.com](https://pw-discount.onrender.com)
+
 
 > **Note**: The backend (hosted on Render free tier) may take ~30 seconds to wake up on the first request after inactivity.
 
