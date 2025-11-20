@@ -1,62 +1,64 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
 
 const Header = () => {
+  const [isMenuOpen, setIsMenuOpen] = useState(false)
+
+  const toggleMenu = () => {
+    setIsMenuOpen(!isMenuOpen)
+  }
+
   return (
     <>
-      <nav style={{
-        background: 'rgba(255, 255, 255, 0.8)',
-        backdropFilter: 'blur(20px)',
-        WebkitBackdropFilter: 'blur(20px)',
-        borderBottom: '1px solid rgba(0,0,0,0.05)',
-        padding: 'var(--spacing-md) 0',
-        position: 'sticky',
-        top: 0,
-        zIndex: 1000,
-        transition: 'all 0.3s ease'
-      }}>
-        <div className="container" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-          <Link to="/" style={{
-            display: 'flex',
-            alignItems: 'center',
-            textDecoration: 'none'
-          }}>
+      <nav className="navbar">
+        <div className="container navbar-container">
+          {/* Logo */}
+          <Link to="/" className="navbar-logo">
             <img 
               src="/logo.png" 
               alt="PW Vouchers" 
-              style={{ 
-                height: '40px', 
-                objectFit: 'contain' 
-              }} 
+              className="navbar-logo-img"
             />
           </Link>
 
-          <div style={{ display: 'flex', gap: 'var(--spacing-lg)' }}>
-            <Link to="/" style={{ color: 'var(--color-text-primary)', textDecoration: 'none', fontSize: 'var(--font-size-sm)', fontWeight: 'var(--font-weight-medium)' }}>Home</Link>
-            <Link to="/offers" style={{ color: 'var(--color-text-primary)', textDecoration: 'none', fontSize: 'var(--font-size-sm)', fontWeight: 'var(--font-weight-medium)' }}>All Offers</Link>
-            <a href="#community" style={{ color: 'var(--color-text-primary)', textDecoration: 'none', fontSize: 'var(--font-size-sm)', fontWeight: 'var(--font-weight-medium)' }}>Community</a>
-            <a href="#help" style={{ color: 'var(--color-text-primary)', textDecoration: 'none', fontSize: 'var(--font-size-sm)', fontWeight: 'var(--font-weight-medium)' }}>Help</a>
+          {/* Desktop Navigation Links */}
+          <div className="navbar-links">
+            <Link to="/" className="navbar-link">Home</Link>
+            <Link to="/offers" className="navbar-link">All Offers</Link>
+            <a href="#community" className="navbar-link">Community</a>
+            <a href="#help" className="navbar-link">Help</a>
           </div>
 
-          <Link to="/admin/login" className="btn btn-primary" style={{
-            padding: '8px 20px',
-            fontSize: 'var(--font-size-sm)'
-          }}>
+          {/* Desktop Sign In Button */}
+          <Link to="/admin/login" className="btn btn-primary navbar-signin">
+            Sign In
+          </Link>
+
+          {/* Mobile Hamburger Menu */}
+          <button 
+            className="navbar-hamburger" 
+            onClick={toggleMenu}
+            aria-label="Toggle menu"
+          >
+            <span className={`hamburger-line ${isMenuOpen ? 'open' : ''}`}></span>
+            <span className={`hamburger-line ${isMenuOpen ? 'open' : ''}`}></span>
+            <span className={`hamburger-line ${isMenuOpen ? 'open' : ''}`}></span>
+          </button>
+        </div>
+
+        {/* Mobile Menu */}
+        <div className={`navbar-mobile-menu ${isMenuOpen ? 'open' : ''}`}>
+          <Link to="/" className="navbar-mobile-link" onClick={toggleMenu}>Home</Link>
+          <Link to="/offers" className="navbar-mobile-link" onClick={toggleMenu}>All Offers</Link>
+          <a href="#community" className="navbar-mobile-link" onClick={toggleMenu}>Community</a>
+          <a href="#help" className="navbar-mobile-link" onClick={toggleMenu}>Help</a>
+          <Link to="/admin/login" className="btn btn-primary navbar-mobile-signin" onClick={toggleMenu}>
             Sign In
           </Link>
         </div>
       </nav>
 
-      <div style={{
-        background: 'var(--color-bg-secondary)',
-        padding: 'var(--spacing-sm) 0',
-        textAlign: 'center',
-        fontSize: 'var(--font-size-xs)',
-        color: 'var(--color-accent)',
-        fontWeight: 'var(--font-weight-medium)',
-        letterSpacing: '0.5px',
-        textTransform: 'uppercase'
-      }}>
+      <div className="navbar-banner">
         Daily Offers & Maximum Savings!
       </div>
     </>
