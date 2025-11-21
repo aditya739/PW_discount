@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react'
 import Header from '../components/Header'
 import Footer from '../components/Footer'
 import CouponCard from '../components/CouponCard'
+import LoadingSpinner from '../components/LoadingSpinner'
 import { couponAPI } from '../services/api'
 
 const Offers = () => {
@@ -124,9 +125,7 @@ const Offers = () => {
 
           {/* Coupons */}
           {loading ? (
-            <p style={{ textAlign: 'center', fontSize: '18px', animation: 'pulse 1.5s infinite' }}>
-              ⏳ Loading offers...
-            </p>
+            <LoadingSpinner fullScreen={false} message="Loading offers..." />
           ) : coupons.length > 0 ? (
             <div>
               {coupons.map((coupon, idx) => (

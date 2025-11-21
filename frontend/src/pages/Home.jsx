@@ -4,6 +4,7 @@ import HeroSection from '../components/HeroSection'
 import OffersTable from '../components/OffersTable'
 import Community from '../components/Community'
 import Footer from '../components/Footer'
+import LoadingSpinner from '../components/LoadingSpinner'
 import { heroImageAPI, noticeAPI, mainDivAPI } from '../services/api'
 import { Link } from 'react-router-dom'
 
@@ -186,6 +187,17 @@ const Home = () => {
       <NoticeBoard />
     </div>
   )
+
+  // Show loading spinner while fetching data
+  if (loading) {
+    return (
+      <div>
+        <Header />
+        <LoadingSpinner fullScreen={false} message="Loading content..." />
+        <Footer />
+      </div>
+    )
+  }
 
   if (heroImages.length === 0) {
     return (
